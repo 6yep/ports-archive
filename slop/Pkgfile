@@ -1,0 +1,23 @@
+# Description: slop (Select Operation) is an application that queries for a selection from the user and prints the region to stdout
+# URL: https://github.com/naelstrof/slop
+# Maintainer: daddylonglags, daddylonglags at protonmail dot com
+# Depends on: glew xorg-libxext glm
+
+name=slop
+version=7.6
+release=1
+source=(https://github.com/naelstrof/${name}/archive/v${version}/${name}-v${version}.tar.gz)
+
+build () {
+	cd $name-$version
+
+	mkdir build && cd build
+
+	cmake .. \
+		-DCMAKE_BUILD_TYPE=RELEASE \
+		-DCMAKE_INSTALL_PREFIX=/usr\
+		-Wno-dev
+
+	make
+	make DESTDIR=$PKG install
+}
