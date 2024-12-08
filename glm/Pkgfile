@@ -1,0 +1,23 @@
+# Description: C++ mathematics library for graphics software based on the OpenGL Shading Language (GLSL) specifications.
+# URL: https://github.com/g-truc/glm
+# Maintainer: daddylonglags, daddylonglags at protonmail dot com
+
+name=glm
+version=1.0.1
+release=1
+source=(https://github.com/g-truc/${name}/archive/refs/tags/${version}.tar.gz)
+
+build () {
+	cd $name-$version
+
+	cmake \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_DATAROOTDIR=/usr/lib/cmake \
+    	-DGLM_BUILD_TESTS=OFF \
+    	-DBUILD_SHARED_LIBS=OFF \
+		-Wno-dev \
+    	-B build .
+	cmake --build build -- all
+	cmake --build build -- install DESTDIR=$PKG
+}
