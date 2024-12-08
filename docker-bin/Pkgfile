@@ -1,0 +1,17 @@
+# Description: A platform to build, share and run container applications
+# URL: https://docker.com
+# Maintainer: daddylonglags, daddylonglags at protonmail dot com
+# Depends on: libseccomp btrfs-progs
+
+name=docker-bin
+version=27.3.1
+release=1
+source=(https://download.docker.com/linux/static/stable/x86_64/docker-$version.tgz \
+dockerd.rc)
+
+build() {
+	cd docker
+
+	install -D -m 0755 * -t $PKG/usr/bin
+	install -D -m 0755 $SRC/dockerd.rc $PKG/etc/rc.d/dockerd
+}

@@ -1,0 +1,10 @@
+To use docker
+
+1. Add your user to the `docker` group
+
+```
+usermod -aG docker <user>
+```
+
+2. Enable cgroup v2 by adding `cgroup_no_v1=all` to your kernel boot
+parameters and reboot
