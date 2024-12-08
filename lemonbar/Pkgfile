@@ -1,0 +1,16 @@
+# Description: A featherweight, lemon-scented, bar based on xcb 
+# URL: https://github.com/LemonBoy/bar
+# Maintainer: daddylonglags, daddylonglags at protonmail dot com
+# Depends on: xorg-libxcb
+
+name=lemonbar
+version=1.5
+release=1
+source=(https://github.com/LemonBoy/bar/archive/v${version}/bar-v${version}.tar.gz)
+
+build () {
+	cd bar-$version
+
+	make
+	make DESTDIR=$PKG PREFIX=/usr install
+}
