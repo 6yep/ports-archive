@@ -1,0 +1,16 @@
+# Description: libptytty is an offspring of rxvt-unicode that handles pty/tty/utmp/wtmp/lastlog handling in mostly OS-independent ways
+# URL: http://software.schmorp.de/pkg/libptytty.html
+# Maintainer: 6yep, 6yep at proton dot me
+
+name=libptytty
+version=2.0
+release=1
+source=(http://dist.schmorp.de/$name/$name-$version.tar.gz)
+
+build () {
+	cd $name-$version
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON .
+	cmake --build .
+	DESTDIR=$PKG cmake --install .
+}
