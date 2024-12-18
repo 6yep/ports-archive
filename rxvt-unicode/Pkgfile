@@ -1,0 +1,28 @@
+# Description: rxvt fork with unicode and xft support
+# URL: http://software.schmorp.de/pkg/rxvt-unicode.html
+# Maintainer: 6yep, 6yep at proton dot me
+# Depends on: xorg-libxft xorg-libxpm libptytty
+
+name=rxvt-unicode
+version=9.31
+release=1
+source=(http://dist.schmorp.de/$name/Attic/$name-$version.tar.bz2)
+
+build () {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--enable-transparency \
+		--enable-fading \
+		--enable-mousewheel \
+		--enable-256-color \
+		--enable-xft \
+		--enable-font-styles \
+		--enable-unicode3 \
+
+	mkdir -p $PKG/usr/share/terminfo
+
+	make
+	DESTDIR=$PKG TERMINFO=$PKG/usr/share/terminfo make install	
+}
