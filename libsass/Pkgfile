@@ -1,0 +1,19 @@
+# Description: A C/C++ port of the Sass engine
+# URL: https://sass-lang.com/libsass
+# Maintainer: 6yep, 6yep at proton dot me
+
+name=libsass
+version=3.6.6
+release=1
+source=(https://github.com/sass/$name/archive/$version/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	autoreconf -fi
+
+	./configure --prefix=/usr
+
+	make
+	make DESTDIR=$PKG install
+}
